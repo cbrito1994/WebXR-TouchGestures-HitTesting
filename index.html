@@ -52,7 +52,6 @@
         }
 
         const onSelect = () => {
-            console.log("select")
             const geometry = new THREE.ConeGeometry(0.1, 0.2, 32).rotateX(Math.PI / 2); // rotateX es para rotar en el eje de las x y lo de parentesis es medida en radianes y el cono apunta a tu direccion
             const materials = new THREE.MeshPhongMaterial({
                 color: 0xffffff * Math.random(),
@@ -61,7 +60,6 @@
                 transparent: 1,
                 opacity: 0.8
             });
-
             const mesh = new THREE.Mesh(geometry, materials);
             mesh.position.set(0, 0, -0.6).applyMatrix4(controller.matrixWorld) // applyMatrix4 es para q el cono aparezca donde hacemos touch en la pantalla. matrixWorld tiene la info de donde hacemos tap en la pantalla
             mesh.quaternion.setFromRotationMatrix(controller.matrixWorld) // con esta funcion estamos controlando el angulo hacia donde debe de voltear el cono
@@ -82,16 +80,6 @@
         const render = () => {
             rotateModel()
             renderer.render(scene, camera);
-        }
-
-        let degrees = 0;
-
-        const rotateModel = () => {
-            if(model !== undefined){
-                // model.rotation.y = model.rotation.y - 0.004;
-                degrees = degrees + 0.2;
-                model.rotation.y = THREE.Math.degToRad(degrees)
-            }
         }
          
         init();
